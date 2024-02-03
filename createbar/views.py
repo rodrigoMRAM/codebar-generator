@@ -42,8 +42,8 @@ def code39(request):
             # conversion2 = conversion[144:]
         context = {"svg" :vacio}
         # Or to an actual file:
-        with open("imagenes/somefile.jpeg", "wb") as f:
-            Code39("2", writer=SVGWriter()).write(f)
+        # with open("imagenes/somefile.jpeg", "wb") as f:
+        #     Code39("2", writer=SVGWriter()).write(f)
         return render(request, 'exito.html',context )
 
     else:
