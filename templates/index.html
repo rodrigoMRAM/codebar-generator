@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'createbar/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <div class="contenido">
+            <div class="primero">
+                <div>
+
+                    <h1 class="codebarH1">CodeBar </h1>
+                    <h1 class="codebarH2"> Generator</h1>
+                </div>
+                <img src="{% static "createbar/img/barcode.jpg" %}" alt="">
+                <a href="{% url "index" %}">Volver al inicio</a>
+            </div>
+            <div class="segundo">
+                
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    
+                    <button class="boton" btype="submit">Generar Codigos</button>
+                    
+                </form>
+            </div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>

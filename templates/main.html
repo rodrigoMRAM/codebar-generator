@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'createbar/css/style.css' %}">
+    <title>CodeBar</title>
+</head>
+<body>
+    <div class="app">
+        <div class="contenido imagenesContenido">
+            <div>
+                <h1 class="codebarH1">Elegir tipo de Codebar</h1>
+                
+            </div>
+            <div class="img">
+                <div class="code39">
+                    <h2>Code39</h2>
+                    <a href="{% url "code39" %}">
+                        <img src="{% static "createbar/img/code39.jpg" %}" alt="" srcset="">
+
+                    </a>
+
+                </div>
+                <div class="code128">
+                    <h2>Code 128</h2>
+                    <a href="{% url "code128" %}">
+                        <img src="{% static "createbar/img/code128.png" %}" alt="" srcset="">
+
+                    </a>
+
+                </div>
+                <div class="ean8">
+                    <h2>Ean-8</h2>
+                    <a href="{% url "ean8" %}">
+                        <img src="{% static "createbar/img/EAN8.jpg" %}" alt="" srcset="">
+
+                    </a>
+                </div>
+                <div class="ean13">
+                    <h2>Ean-13</h2>
+                    <a href="{% url "ean13" %}">
+
+                        <img src="{% static "createbar/img/ean13.png" %}" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="ean14">
+                    <h2>Ean-14</h2>
+                    <a href="{% url "ean14" %}">
+                        <img src="{% static "createbar/img/ean14.png" %}" alt="" srcset="">
+
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
