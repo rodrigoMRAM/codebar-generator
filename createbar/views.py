@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.contrib import messages
 # Create your views here.
 import barcode
 from io import BytesIO
@@ -32,19 +32,21 @@ def code39(request):
         print(formulario)
         desde = formulario.cleaned_data['desde']
         hasta = formulario.cleaned_data['hasta']
-
-        rv = BytesIO()
-        vacio = []
-        for x in range(int(desde), int(hasta)+1):
-            pruea = Code39(str(x), writer=SVGWriter()).render(rv)
-            conversion = pruea.decode('utf-8')
-            vacio.append(conversion)
-            # conversion2 = conversion[144:]
-        context = {"svg" :vacio}
-        # Or to an actual file:
-        # with open("imagenes/somefile.jpeg", "wb") as f:
-        #     Code39("2", writer=SVGWriter()).write(f)
-        return render(request, 'exito.html',context )
+        if desde > hasta:
+            messages.error(request, "First value must be greater than second")
+            return render(request, 'index.html',{'form': formulario})
+        else:
+            rv = BytesIO()
+            vacio = []
+            for x in range(int(desde), int(hasta)+1):
+                pruea = Code39(str(x), writer=SVGWriter()).render(rv)
+                conversion = pruea.decode('utf-8')
+                vacio.append(conversion)
+            context = {"svg" :vacio}
+            # Or to an actual file:
+            # with open("imagenes/somefile.jpeg", "wb") as f:
+            #     Code39("2", writer=SVGWriter()).write(f)
+            return render(request, 'exito.html',context )
 
     else:
         formulario = MiFormulario()
@@ -59,19 +61,21 @@ def code128(request):
         print(formulario)
         desde = formulario.cleaned_data['desde']
         hasta = formulario.cleaned_data['hasta']
-
-        rv = BytesIO()
-        vacio = []
-        for x in range(int(desde), int(hasta)+1):
-            pruea = Code128(str(x), writer=SVGWriter()).render(rv)
-            conversion = pruea.decode('utf-8')
-            vacio.append(conversion)
-            # conversion2 = conversion[144:]
-        context = {"svg" :vacio}
-        # Or to an actual file:
-        # with open("imagenes/somefile.jpeg", "wb") as f:
-        #     Code39("2", writer=SVGWriter()).write(f)
-        return render(request, 'exito.html',context )
+        if desde > hasta:
+            messages.error(request, "First value must be greater than second")
+            return render(request, 'index.html',{'form': formulario})
+        else:
+            rv = BytesIO()
+            vacio = []
+            for x in range(int(desde), int(hasta)+1):
+                pruea = Code128(str(x), writer=SVGWriter()).render(rv)
+                conversion = pruea.decode('utf-8')
+                vacio.append(conversion)
+            context = {"svg" :vacio}
+            # Or to an actual file:
+            # with open("imagenes/somefile.jpeg", "wb") as f:
+            #     Code39("2", writer=SVGWriter()).write(f)
+            return render(request, 'exito.html',context )
 
     else:
         formulario = MiFormulario()
@@ -86,24 +90,25 @@ def ean8(request):
         print(formulario)
         desde = formulario.cleaned_data['desde']
         hasta = formulario.cleaned_data['hasta']
+        if desde > hasta:
+            messages.error(request, "First value must be greater than second")
+            return render(request, 'index.html',{'form': formulario})
+        else:
 
-        rv = BytesIO()
-        
-        # EAN8(str(desde), writer=SVGWriter()).render(rv)
-        vacio = []
-        for x in range(int(desde), int(hasta)+1):
-            ch = str(x).zfill(7)
-            print(ch)
-            pruea = EAN8(ch, writer=SVGWriter()).render(rv)
-            conversion = pruea.decode('utf-8')
-            print(conversion)
-            vacio.append(conversion)
-            # conversion2 = conversion[144:]
-        context = {"svg" :vacio}
-        # Or to an actual file:
-        # with open("imagenes/somefile.jpeg", "wb") as f:
-        #     EAN8("2", writer=SVGWriter()).write(f)
-        return render(request, 'exito.html',context )
+            rv = BytesIO()
+            vacio = []
+            for x in range(int(desde), int(hasta)+1):
+                ch = str(x).zfill(7)
+                print(ch)
+                pruea = EAN8(ch, writer=SVGWriter()).render(rv)
+                conversion = pruea.decode('utf-8')
+                print(conversion)
+                vacio.append(conversion)
+            context = {"svg" :vacio}
+            # Or to an actual file:
+            # with open("imagenes/somefile.jpeg", "wb") as f:
+            #     EAN8("2", writer=SVGWriter()).write(f)
+            return render(request, 'exito.html',context )
 
     else:
         formulario = MiFormulario()
@@ -117,24 +122,25 @@ def ean13(request):
         print(formulario)
         desde = formulario.cleaned_data['desde']
         hasta = formulario.cleaned_data['hasta']
+        if desde > hasta:
+            messages.error(request, "First value must be greater than second")
+            return render(request, 'index.html',{'form': formulario})
+        else:
+            rv = BytesIO()
+            vacio = []
+            for x in range(int(desde), int(hasta)+1):
+                ch = str(x).zfill(12)
+                print(ch)
+                pruea = EAN13(ch, writer=SVGWriter()).render(rv)
+                conversion = pruea.decode('utf-8')
+                print(conversion)
+                vacio.append(conversion)
 
-        rv = BytesIO()
-        
-        # EAN8(str(desde), writer=SVGWriter()).render(rv)
-        vacio = []
-        for x in range(int(desde), int(hasta)+1):
-            ch = str(x).zfill(12)
-            print(ch)
-            pruea = EAN13(ch, writer=SVGWriter()).render(rv)
-            conversion = pruea.decode('utf-8')
-            print(conversion)
-            vacio.append(conversion)
-            # conversion2 = conversion[144:]
-        context = {"svg" :vacio}
-        # Or to an actual file:
-        # with open("imagenes/somefile.jpeg", "wb") as f:
-        #     EAN8("2", writer=SVGWriter()).write(f)
-        return render(request, 'exito.html',context )
+            context = {"svg" :vacio}
+            # Or to an actual file:
+            # with open("imagenes/somefile.jpeg", "wb") as f:
+            #     EAN8("2", writer=SVGWriter()).write(f)
+            return render(request, 'exito.html',context )
 
     else:
         formulario = MiFormulario()
@@ -154,22 +160,25 @@ def ean14(request):
         print(formulario)
         desde = formulario.cleaned_data['desde']
         hasta = formulario.cleaned_data['hasta']
+        if desde > hasta:
+            messages.error(request, "First value must be greater than second")
+            return render(request, 'index.html',{'form': formulario})
+        else:
+            rv = BytesIO()
+            vacio = []
+            for x in range(int(desde), int(hasta)+1):
+                ch = str(x).zfill(13)
+                print(ch)
+                pruea = EAN14(ch, writer=SVGWriter()).render(rv)
+                conversion = pruea.decode('utf-8')
+                print(conversion)
+                vacio.append(conversion)
 
-        rv = BytesIO()
-        vacio = []
-        for x in range(int(desde), int(hasta)+1):
-            ch = str(x).zfill(13)
-            print(ch)
-            pruea = EAN14(ch, writer=SVGWriter()).render(rv)
-            conversion = pruea.decode('utf-8')
-            print(conversion)
-            vacio.append(conversion)
-            # conversion2 = conversion[144:]
-        context = {"svg" :vacio}
-        # Or to an actual file:
-        # with open("imagenes/somefile.jpeg", "wb") as f:
-        #     Code39("2", writer=SVGWriter()).write(f)
-        return render(request, 'exito.html',context )
+            context = {"svg" :vacio}
+            # Or to an actual file:
+            # with open("imagenes/somefile.jpeg", "wb") as f:
+            #     Code39("2", writer=SVGWriter()).write(f)
+            return render(request, 'exito.html',context )
 
     else:
         formulario = MiFormulario()

@@ -30,6 +30,10 @@
 .primero{
     background-color: white;
 }
+.primerPart{
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
 .segundo{
     background-color: rgb(111, 0, 255);
     width: 350px;
@@ -97,4 +101,32 @@ main */
     width: 200px;
     height: 200px;
     padding: 10px;
+}
+.messages{
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+}
+.error{
+    color: red;
+    list-style: none;
+    font-size: 9px;
+}
+
+.links{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+.code128Individual{
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px -1px 23px 3px rgba(0,0,0,0.58);
+    -webkit-box-shadow: 1px -1px 23px 3px rgba(0,0,0,0.58);
+    -moz-box-shadow: 1px -1px 23px 3px rgba(0,0,0,0.58);
 }
